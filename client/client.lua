@@ -33,6 +33,11 @@ AddEventHandler('mrp:characters', function()
     TriggerServerEvent('mrp:fetchCharacters', GetPlayerServerId(PlayerId()))
 end)
 
+RegisterNetEvent('mrp:createdCharacter')
+AddEventHandler('mrp:createdCharacter', function(character)
+    TriggerServerEvent('mrp:useCharacter', GetPlayerServerId(PlayerId()), character)
+end)
+
 locale = Config.locales[Config.locale]
 
 _menuPool = NativeUI.CreatePool()
