@@ -65,11 +65,25 @@ function CharacterMenu(characters)
         end
     end
     
-    local createSubmenu = _menuPool:AddSubMenu(mainMenu, locale.createChar)
+    local createSubmenu = NativeUI.CreateItem(locale.createChar, locale.createCharDesc)
+    mainMenu:AddItem(createSubmenu)
+    mainMenu.OnItemSelect = function(sender, item, index)
+        if item == createSubmenu then
+            SetNuiFocus(true, true)
+            SendNUIMessage({
+                type = 'show'
+            })
+        end
+    end
     
     _menuPool:RefreshIndex()
     mainMenu:Visible(true)
 end
+
+RegisterNUICallback('cancel', function(data, cb)
+    SetNuiFocus(false, false)
+    cb()
+end)
 
 Citizen.CreateThread(function()
     while true do

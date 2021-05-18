@@ -32,4 +32,5 @@ Config.locales['en'] = {
     deleteCharNo = "No",
     deleteCharYesDesc = "Yes I have no idea what I'm doing",
     deleteCharNoDesc = "No I have no idea what I'm doing",
+    createCharDesc = "Open create character form",
 }
