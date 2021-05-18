@@ -25,6 +25,7 @@ end)
 RegisterNetEvent('mrp:spawn')
 AddEventHandler('mrp:spawn', function(characterToUse, spawnPoint)
     mainMenu:Visible(false)
+    _menuPool:CloseAllMenus()
 end)
 
 RegisterNetEvent('mrp:characters')
@@ -33,8 +34,6 @@ AddEventHandler('mrp:characters', function()
 end)
 
 locale = Config.locales[Config.locale]
-
-menuOpen = false
 
 _menuPool = NativeUI.CreatePool()
 mainMenu = NativeUI.CreateMenu(locale.mainMenuLabel, locale.mainMenuDesc)
@@ -69,7 +68,6 @@ function CharacterMenu(characters)
     local createSubmenu = _menuPool:AddSubMenu(mainMenu, locale.createChar)
     
     _menuPool:RefreshIndex()
-    menuOpen = true
     mainMenu:Visible(true)
 end
 
