@@ -13,3 +13,17 @@ Config.StallTime = 2500 -- (in ms) -  If you ever for whatever reason have issue
 -- updating showing faster than it's recieveing data, then increase this number. However, 1000 should be way more than fine for every single machine
 
 Config.DisplayPageCounterOnMainMenu = false
+
+Config.locale = 'en'
+
+Config.locales = {}
+
+Config.locales['en'] = {
+    mainMenuLabel = "Select character",
+    mainMenuDesc = "~b~CHARACTER MENU",
+    selectChar = "Play character",
+    selectCharDesc = "Play character ",
+    deleteChar = "Delete character",
+    deleteCharDesc = "Delete character ",
+    createChar = "Create character",
+}
