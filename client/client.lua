@@ -44,15 +44,24 @@ function CharacterMenu(characters)
     for k, char in pairs(characters) do
         local submenu = _menuPool:AddSubMenu(mainMenu, char.name .. " " .. char.surname)
         local selectChar = NativeUI.CreateItem(locale.selectChar, locale.selectCharDesc .. char.name .. " " .. char.surname)
-        local deleteChar = NativeUI.CreateItem(locale.deleteChar, locale.deleteCharDesc .. char.name .. " " .. char.surname)
         submenu:AddItem(selectChar)
-        submenu:AddItem(deleteChar)
+        local deleteChar = _menuPool:AddSubMenu(submenu, locale.deleteChar)
+        local delCharYes = NativeUI.CreateItem(locale.deleteCharYes, locale.deleteCharYesDesc)
+        local delCharNo = NativeUI.CreateItem(locale.deleteCharNo, locale.deleteCharNoDesc)
+        deleteChar:AddItem(delCharNo)
+        deleteChar:AddItem(delCharYes)
         
         submenu.OnItemSelect = function(sender, item, index)
             if item == selectChar then
                 TriggerServerEvent('mrp:useCharacter', GetPlayerServerId(PlayerId()), char)
-            elseif item == deleteChar  then
-                TriggerServerEvent('mrp:deleteCharacter', GetPlayerServerId(PlayerId()), char)
+            end
+        end
+        
+        deleteChar.OnItemSelect = function(sender, item, index)
+            if item == delCharYes  then
+                TriggerServerEvent('mrp:deleteCharacter', GetPlayerServerId(PlayerId()), char._id)
+            elseif item == delCharNo then
+                deleteChar:GoBack()
             end
         end
     end

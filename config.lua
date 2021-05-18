@@ -26,4 +26,10 @@ Config.locales['en'] = {
     deleteChar = "Delete character",
     deleteCharDesc = "Delete character ",
     createChar = "Create character",
+    deleteCharConfTitle = "Confirm",
+    deleteCharConfText = "Are you sure you want to delete ",
+    deleteCharYes = "Yes",
+    deleteCharNo = "No",
+    deleteCharYesDesc = "Yes I have no idea what I'm doing",
+    deleteCharNoDesc = "No I have no idea what I'm doing",
 }
