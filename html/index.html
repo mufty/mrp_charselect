@@ -11,10 +11,26 @@
 
 <body>
     <div class="main_container">
-        <input type"text" id="fname">
-        <input type"text" id="lname">
-        <input type="submit" id="submit" value="Create">
-        <input type="submit" id="cancel" value="Cancel">
+        <div class="title">Create character</div>
+        <div class="createForm">
+            <div class="inputField"><span>First name</span><input type"text" id="fname"></div>
+            <div class="inputField"><span>Last name</span><input type"text" id="lname"></div>
+            <div class="inputField">
+                <span>Sex</span>
+                <select id="sex">
+                    <option value="MALE">Male</option>
+                    <option value="FEMALE">Female</option>
+                </select>
+            </div>
+            <div class="inputField birthday"><span>Birthday</span></div>
+            <div class="inputField"><span>Month</span><input type"number" id="month"></div>
+            <div class="inputField"><span>Day</span><input type"number" id="day"></div>
+            <div class="inputField"><span>Year</span><input type"number" id="year"></div>
+            <div class="buttons">
+                <input type="submit" id="submit" value="Create">
+                <input type="submit" id="cancel" value="Cancel">
+            </div>
+        </div>
     </div>
 </body>
 

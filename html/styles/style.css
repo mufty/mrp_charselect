@@ -9,4 +9,67 @@ body {
     height: 100%;
     width: 100%;
     font-size: 16px;
+    color: #ffffff;
+}
+
+.main_container {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 307px;
+    border-radius: 10px;
+    padding: 10px;
+    margin: auto;
+    margin-top: 10%;
+}
+
+.main_container .title {
+    margin-bottom: 10px;
+}
+
+.inputField span {
+    display: inline-block;
+    width: 100px;
+}
+
+.inputField input {
+    font-size: 16px;
+    height: 30px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border-style: solid;
+    border-color: #FFFFFF;
+}
+
+.inputField input:focus,
+.inputField select:focus {
+    border-color: #35C1EC;
+    border-style: solid;
+    outline-style: solid;
+}
+
+.inputField select {
+    font-size: 16px;
+    height: 30px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.inputField.birthday span {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.buttons {
+    text-align: center;
+    padding: 10px;
+}
+
+.buttons input {
+    border-style: solid;
+    border-radius: 5px;
+    width: 100px;
+    font-size: 20px;
+    font-family: 'gobold-regular';
+    background-color: #35C1EC;
+    border-color: #269EC2;
+    color: #ffffff;
 }

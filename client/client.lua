@@ -85,6 +85,12 @@ RegisterNUICallback('cancel', function(data, cb)
     cb()
 end)
 
+RegisterNUICallback('submit', function(data, cb)
+    SetNuiFocus(false, false)
+    cb()
+    TriggerServerEvent('mrp:createCharacter', GetPlayerServerId(PlayerId()), data)
+end)
+
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
