@@ -81,11 +81,11 @@ end)
 locale = Config.locales[Config.locale]
 
 _menuPool = NativeUI.CreatePool()
-mainMenu = NativeUI.CreateMenu(locale.mainMenuLabel, locale.mainMenuDesc)
-_menuPool:Add(mainMenu)
 
 function CharacterMenu(characters)
     newChar = nil
+    mainMenu = NativeUI.CreateMenu(locale.mainMenuLabel, locale.mainMenuDesc)
+    _menuPool:Add(mainMenu)
     for k, char in pairs(characters) do
         local submenu = _menuPool:AddSubMenu(mainMenu, char.name .. " " .. char.surname)
         local selectChar = NativeUI.CreateItem(locale.selectChar, locale.selectCharDesc .. char.name .. " " .. char.surname)
@@ -105,6 +105,9 @@ function CharacterMenu(characters)
         deleteChar.OnItemSelect = function(sender, item, index)
             if item == delCharYes  then
                 TriggerServerEvent('mrp:deleteCharacter', GetPlayerServerId(PlayerId()), char._id)
+                mainMenu:Visible(false)
+                _menuPool:CloseAllMenus()
+                TriggerServerEvent('mrp:fetchCharacters', GetPlayerServerId(PlayerId()))
             elseif item == delCharNo then
                 deleteChar:GoBack()
             end
