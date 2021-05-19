@@ -17,6 +17,9 @@ Citizen.CreateThread(function()
     end
 end)
 
+local newChar = nil
+local spawningChar = nil
+
 RegisterNetEvent('mrp:client:fetchCharacters')
 AddEventHandler('mrp:client:fetchCharacters', function(playerCharacters)
     CharacterMenu(playerCharacters)
@@ -26,6 +29,42 @@ RegisterNetEvent('mrp:spawn')
 AddEventHandler('mrp:spawn', function(characterToUse, spawnPoint)
     mainMenu:Visible(false)
     _menuPool:CloseAllMenus()
+    spawningChar = characterToUse
+end)
+
+AddEventHandler('playerSpawned', function(spawnPoint)
+    if newChar ~= nil then
+        local config = {
+            ped = true,
+            headBlend = true,
+            faceFeatures = true,
+            headOverlays = true,
+            components = true,
+            props = true,
+        }
+
+        exports['fivem-appearance']:startPlayerCustomization(function (appearance)
+            if (appearance) then
+                newChar.outfits = {}
+                table.insert(newChar.outfits, {
+                    name = 'default',
+                    appearance = appearance,
+                })
+                newChar.model = appearance.model
+                TriggerServerEvent('mrp:updateCharacter', newChar);
+                print('Saved')
+            else
+                print('Canceled')
+            end
+            newChar = nil
+        end, config)
+    else
+        if spawningChar ~= nil and spawningChar["outfits"] ~= nil then
+            --set default first appearance saved
+            exports['fivem-appearance']:setPlayerAppearance(spawningChar.outfits[1].appearance)
+        end
+        spawningChar = nil
+    end
 end)
 
 RegisterNetEvent('mrp:characters')
@@ -36,6 +75,7 @@ end)
 RegisterNetEvent('mrp:createdCharacter')
 AddEventHandler('mrp:createdCharacter', function(character)
     TriggerServerEvent('mrp:useCharacter', GetPlayerServerId(PlayerId()), character)
+    newChar = character
 end)
 
 locale = Config.locales[Config.locale]
@@ -45,6 +85,7 @@ mainMenu = NativeUI.CreateMenu(locale.mainMenuLabel, locale.mainMenuDesc)
 _menuPool:Add(mainMenu)
 
 function CharacterMenu(characters)
+    newChar = nil
     for k, char in pairs(characters) do
         local submenu = _menuPool:AddSubMenu(mainMenu, char.name .. " " .. char.surname)
         local selectChar = NativeUI.CreateItem(locale.selectChar, locale.selectCharDesc .. char.name .. " " .. char.surname)
