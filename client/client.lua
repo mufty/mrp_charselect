@@ -29,7 +29,9 @@ RegisterNetEvent('mrp:spawn')
 AddEventHandler('mrp:spawn', function(characterToUse, spawnPoint)
     mainMenu:Visible(false)
     _menuPool:CloseAllMenus()
-    spawningChar = characterToUse
+    if characterToUse ~= nil then
+        spawningChar = characterToUse
+    end
 end)
 
 AddEventHandler('playerSpawned', function(spawnPoint)
@@ -63,7 +65,7 @@ AddEventHandler('playerSpawned', function(spawnPoint)
             --set default first appearance saved
             exports['fivem-appearance']:setPlayerAppearance(spawningChar.outfits[1].appearance)
         end
-        spawningChar = nil
+        --spawningChar = nil
     end
 end)
 
