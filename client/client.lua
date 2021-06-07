@@ -53,7 +53,7 @@ AddEventHandler('playerSpawned', function(spawnPoint)
                     appearance = appearance,
                 })
                 newChar.model = appearance.model
-                TriggerServerEvent('mrp:updateCharacter', newChar);
+                TriggerServerEvent('mrp:updateCharacter', GetPlayerServerId(PlayerId()), newChar);
                 print('Saved')
             else
                 print('Canceled')
