@@ -59,7 +59,7 @@ AddEventHandler('playerSpawned', function(spawnPoint)
                 print('Canceled')
             end
             newChar = nil
-        end, config)
+        end, config, true)
     else
         if spawningChar ~= nil and spawningChar["outfits"] ~= nil then
             --set default first appearance saved
