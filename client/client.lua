@@ -63,7 +63,15 @@ AddEventHandler('playerSpawned', function(spawnPoint)
     else
         if spawningChar ~= nil and spawningChar["outfits"] ~= nil then
             --set default first appearance saved
-            exports['fivem-appearance']:setPlayerAppearance(spawningChar.outfits[1].appearance)
+            local appearance = spawningChar.outfits[1].appearance
+            if spawningChar["currentOutfit"] ~= nil then
+                for k, outfit in pairs(spawningChar.outfits) do
+                    if outfit.name == spawningChar.currentOutfit then
+                        appearance = outfit.appearance
+                    end
+                end
+            end
+            exports['fivem-appearance']:setPlayerAppearance(appearance)
         end
         --spawningChar = nil
     end
