@@ -72,6 +72,19 @@ AddEventHandler('playerSpawned', function(spawnPoint)
                 end
             end
             exports['fivem-appearance']:setPlayerAppearance(appearance)
+            --apply tattoos
+            if spawningChar.tattoos ~= nil then
+                ClearPedDecorations(PlayerPedId())
+                for k, v in pairs(spawningChar.tattoos) do
+                    if v.Count ~= nil then
+                        for i = 1, v.Count do
+                            SetPedDecoration(PlayerPedId(), v.collection, v.nameHash)
+                        end
+                    else
+                        SetPedDecoration(PlayerPedId(), v.collection, v.nameHash)
+                    end
+                end
+            end
         end
         --spawningChar = nil
     end
